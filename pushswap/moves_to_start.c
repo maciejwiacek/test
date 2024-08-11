@@ -6,19 +6,19 @@
 /*   By: mbaj <mbaj@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 21:03:36 by mbaj              #+#    #+#             */
-/*   Updated: 2024/08/11 23:05:39 by mwiacek          ###   ########.fr       */
+/*   Updated: 2024/08/12 00:30:23 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static void	g(t_frame *frame, int flag, t_stack	*tmp)
+static void	g(t_frame *frame, int flag, t_stack	**tmp)
 {
 	if (flag == 1)
 		frame->small_rotate++;
 	else
 		frame->big_rotate++;
-	tmp = tmp->next;
+	*tmp = (*tmp)->next;
 }
 
 void	moves_to_start(t_frame *frame, char stack_name, int flag)
@@ -43,7 +43,7 @@ void	moves_to_start(t_frame *frame, char stack_name, int flag)
 			element = frame->biggest;
 		while (tmp->num != element)
 		{
-			g(frame, flag, tmp);
+			g(frame, flag, &tmp);
 		}
 	}
 }
