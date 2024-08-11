@@ -1,4 +1,16 @@
 /* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fill_stack_a.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mwiacek <mwiacek@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/11 22:59:57 by mwiacek           #+#    #+#             */
+/*   Updated: 2024/08/11 23:38:59 by mwiacek          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
 /*		                                                                      */
 /*                                                        :::      ::::::::   */
 /*   fill_stack_a.c                                     :+:      :+:    :+:   */
@@ -12,30 +24,32 @@
 
 #include "../push_swap.h"
 
-static long	atoi_push_swap(t_frame *frame, char *str)
+static long	atoi_push_swap(char *str)
 {
 	long	num;
 	int		i;
-	int		len;
 	int		sign;
 
 	num = 0;
 	i = 0;
-	len = 0;
 	sign = 1;
 	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'
 		|| str[i] == '\v' || str[i] == '\f')
 		i++;
-	if (str[i++] == '-')
+	if (str[i] == '-')
+	{
 		sign = -1;
+		++i;
+	}
 	else if (str[i] == '+')
-		i++;
+		++i;
 	while (str[i] == '0')
-		i++;
-	while (len++, str[i] >= '0' && str[i++] <= '9')
+		++i;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
 		num = num * 10 + (str[i] - '0');
-	if (len > 10)
-		push_swap_error(frame);
+		++i;
+	}
 	return (num * sign);
 }
 
@@ -74,7 +88,7 @@ static void	complete_filling(t_frame *frame, char *str, int i, int j)
 				j++;
 			if (!*str)
 				break ;
-			test_int_size = atoi_push_swap(frame, str);
+			test_int_size = atoi_push_swap(str);
 			if (test_int_size > 2147483647 || test_int_size < -2147483648)
 				push_swap_error(frame);
 			stack_add_end(frame, 'a', test_int_size);

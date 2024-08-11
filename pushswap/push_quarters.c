@@ -6,7 +6,7 @@
 /*   By: mbaj <mbaj@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 13:35:12 by mbaj              #+#    #+#             */
-/*   Updated: 2024/08/11 23:03:28 by mwiacek          ###   ########.fr       */
+/*   Updated: 2024/08/11 23:39:46 by mwiacek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static t_stack	*j(int *flag, t_frame *frame)
 
 void	push_quarters(t_frame *frame, t_stack *stack_a, int split)
 {
-	t_stack	*stack_a_end = NULL;
-	int flag;
+	t_stack	*stack_a_end;
+	int		flag;
 
 	stack_a_end = j(&flag, frame);
 	while (flag != 1)
